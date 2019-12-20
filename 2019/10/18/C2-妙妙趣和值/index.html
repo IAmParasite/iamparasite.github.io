@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="动态规划,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题面定义一个长度为k的数组a1,a2,⋯,ak的妙妙趣值是min|ai−aj|(1≤i&amp;lt;j≤k)那么请问对于一个长度为n的序列，所有长度为k的子序列的妙妙趣值和为多少。 某个序列的子序列是从最初序列通过去除某些元素但不破坏余下元素的相对位置（在前或在后）而形成的新序列。 答案为100000007取模 输入第一行两个数n,k，表示序列的长度，子序列的长度。(2≤k≤n≤1000) 接下来一行，">
+<meta name="keywords" content="动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C2-妙妙趣和值">
+<meta property="og:url" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/index.html">
+<meta property="og:site_name" content="IAmParasite的个人博客">
+<meta property="og:description" content="题面定义一个长度为k的数组a1,a2,⋯,ak的妙妙趣值是min|ai−aj|(1≤i&amp;lt;j≤k)那么请问对于一个长度为n的序列，所有长度为k的子序列的妙妙趣值和为多少。 某个序列的子序列是从最初序列通过去除某些元素但不破坏余下元素的相对位置（在前或在后）而形成的新序列。 答案为100000007取模 输入第一行两个数n,k，表示序列的长度，子序列的长度。(2≤k≤n≤1000) 接下来一行，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/10.png">
+<meta property="og:updated_time" content="2019-10-18T15:14:23.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C2-妙妙趣和值">
+<meta name="twitter:description" content="题面定义一个长度为k的数组a1,a2,⋯,ak的妙妙趣值是min|ai−aj|(1≤i&amp;lt;j≤k)那么请问对于一个长度为n的序列，所有长度为k的子序列的妙妙趣值和为多少。 某个序列的子序列是从最初序列通过去除某些元素但不破坏余下元素的相对位置（在前或在后）而形成的新序列。 答案为100000007取模 输入第一行两个数n,k，表示序列的长度，子序列的长度。(2≤k≤n≤1000) 接下来一行，">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/18/C2-妙妙趣和值/6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/18/C2-妙妙趣和值/">
+
+
+
+
+
+  <title>C2-妙妙趣和值 | IAmParasite的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IAmParasite的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/18/C2-妙妙趣和值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="IAmParasite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAmParasite的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C2-妙妙趣和值</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-18T18:41:00+08:00">
+                2019-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第二次上机题解/" itemprop="url" rel="index">
+                    <span itemprop="name">第二次上机题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/18/C2-妙妙趣和值/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/18/C2-妙妙趣和值/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>定义一个长度为k的数组a1,a2,⋯,ak的妙妙趣值是min|ai−aj|(1≤i&lt;j≤k)<br>那么请问对于一个长度为n的序列，所有长度为k的子序列的妙妙趣值和为多少。</p>
+<p>某个序列的子序列是从最初序列通过去除某些元素但不破坏余下元素的相对位置（在前或在后）而形成的新序列。</p>
+<p>答案为100000007取模</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一行两个数n,k，表示序列的长度，子序列的长度。(2≤k≤n≤1000)</p>
+<p>接下来一行，n个整数a1,a2,⋯,an,(0≤ai≤1e5)</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>一行一个数，表示妙妙趣值和</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> <span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">7</span> <span class="number">3</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h4><p>长度为3的子序列有 [1,7,3], [1,3,5], [7,3,5], [1,7,5]，每一个妙妙趣值都是2</p>
+<h4 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h4><p><img src="/2019/10/18/C2-妙妙趣和值/6.png" alt="你想输入的替代文字"><br><img src="/2019/10/18/C2-妙妙趣和值/7.png" alt="你想输入的替代文字"><br><img src="/2019/10/18/C2-妙妙趣和值/8.png" alt="你想输入的替代文字"><br><img src="/2019/10/18/C2-妙妙趣和值/9.png" alt="你想输入的替代文字"><br><img src="/2019/10/18/C2-妙妙趣和值/10.png" alt="你想输入的替代文字"></p>
+<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>我们最朴素的算法就是列举出所有长度为k的数列，再乘以他的妙妙趣和值，这种复杂度我们显然接受不了。</p>
+<p>简单的思考以后，可以将数列从小到大排序，得到一个有序的序列。</p>
+<p>我们尝试是否能算出对于一个固定的妙妙趣和值x的所有序列的个数呢？经过尝试我们很难统计这样的个数，在思考的过程中可以很容易确定妙妙趣和值大于等于x的序列个数，记为dp(x),我们可以一次自己计算出 ans += x * (dp(x) - dp(x-1))，容易想到这样是对的。这时x要从大往小枚举</p>
+<p>我们再进行一些优化：</p>
+<p>例如计算 1 * a1 + 2 * a2 + 3 * a3 + 4 * a4 的值，等同于 a1 + (a1 + a2) + (a1 + a2 + a3) + (a1 + a2 + a3 + a4) </p>
+<p>这样我们可以从小往大遍历，dp(x) 从大往小一次减小，可以想到 x = 1 的情况为 a1 + a2 + a3 + a4，x = 2 的情况为 a1 + a2 + a3 以此类推</p>
+<p>用dp[i][j]表示前i个数字中长度为k的序列，这个序列要满足的一定条件，即x+a[li]&lt;=a[i]，li为满足不等式的最大值。递推方程式为dp[i][j] = dp[i-1][j] + dp[li][j]</p>
+<p>递推方程式由两个部分由来：采取第k位和不采取第k位。不采取第k位显然满足条件，采取第i位要确定满足条件的下标。这样我们取得的dp[n][k]必然是满足妙妙趣和值大于x的数列个数</p>
+<p>我们最原始的想法于是就产生了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 100000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line"><span class="keyword">int</span> a[maxn], li, n, k;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[maxn][maxn]; <span class="comment">// 子序列的个数 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> ii = i - <span class="number">1</span>; ii &gt;= <span class="number">1</span>; ii--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i] - a[ii] &gt;= x)</span><br><span class="line">		<span class="keyword">return</span> ii;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n);</span><br><span class="line">	<span class="keyword">int</span> num = (a[n] - a[<span class="number">1</span>]) / (k - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> ss = <span class="number">1</span>; ss &lt;= num; ss++) <span class="comment">// 枚举差值 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			li = cal(ss,i);</span><br><span class="line">			dp[li][<span class="number">1</span>] = li;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= i &amp;&amp; j &lt;= k; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i][j] = (dp[i<span class="number">-1</span>][j] + dp[li][j<span class="number">-1</span>]) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ans += dp[n][k];</span><br><span class="line">		ans = ans % mod;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans%mod);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然这不是一份合格的AC代码，我们还可以进行一波小优化：</p>
+<p>注意到以上这一份代码，对于不同的a[i] 和 x（差值ss）都要进行一次递归计算，那么我们可以在这一方面动一下脑筋吗？</p>
+<p>我们有 li 满足 a[li] + x &lt;= a[i]，li是满足这个不等式的最大值</p>
+<p>注意到： 当a[i] - x 的差值不变的时候， 我们a[li]的值是否发生变化呢？</p>
+<p>答案是否定的！！！对于不同的a[i] 、 x 他们之间有着关系： 即a[i] - x为确定值时，我们有相同的li，根据这个思路我们可以用O(n) 来代替上述近似于O(n^2) ~ O(n^3) 的递归算法，极大地降低我们的运算时间。</p>
+<p>当然还可以优化：快读，取模优化都是可以的，运气好的话可以进1000ms</p>
+<p>注意： 不要定义 const ll mod = 100000007 来代替宏定义，可能评测机的编译优化有问题，导致这个程序运算时间飙升到5000ms，这个有点不太懂…<br>学编程就是这样，一个问题刚刚解决，马上又有一个问题出来了…</p>
+<p>还有，那个上机是真的难…</p>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 100000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line"><span class="keyword">int</span> a[maxn], li, n, k;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[maxn][maxn]; <span class="comment">// 子序列的个数 </span></span><br><span class="line"><span class="keyword">int</span> x[<span class="number">100005</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n);</span><br><span class="line">	<span class="keyword">int</span> num = (a[n] - a[<span class="number">1</span>]) / (k - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> l =  <span class="number">0</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = l; j &lt; a[i]; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			x[j] = i - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		l = a[i];</span><br><span class="line">	&#125;  <span class="comment">// 其他方法当然可以，但是一定要注意相同数字要取最大值，不然可能0.4WA哦~</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> ss = <span class="number">1</span>; ss &lt;= num; ss++) <span class="comment">// 枚举差值 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[i] - ss &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">			li = x[a[i]-ss];</span><br><span class="line">			dp[li][<span class="number">1</span>] = li; </span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= i &amp;&amp; j &lt;= k; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i][j] = (dp[i<span class="number">-1</span>][j] + dp[li][j<span class="number">-1</span>]) - mod * ((dp[i<span class="number">-1</span>][j] + dp[li][j<span class="number">-1</span>]) / mod);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ans += dp[n][k];</span><br><span class="line">		ans = ans - mod * (ans/mod);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans - mod * (ans/mod));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/17/C2-与非门/" rel="next" title="C2-与非门">
+                <i class="fa fa-chevron-left"></i> C2-与非门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/28/titled/" rel="prev" title="19秋训6_A">
+                19秋训6_A <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">IAmParasite</p>
+              <p class="site-description motion-element" itemprop="description">烟一支一支的点 酒一杯一杯的干</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index-1.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入"><span class="nav-number">2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">4.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">5.</span> <span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例说明"><span class="nav-number">6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hint"><span class="nav-number">7.</span> <span class="nav-text">Hint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析题目"><span class="nav-number">8.</span> <span class="nav-text">分析题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码"><span class="nav-number">9.</span> <span class="nav-text">AC代码</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><span class="nav-number"></span> <span class="nav-text">本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">IAmParasite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'cQBs1ruJ3BXCDTIOU8VOCNGg-gzGzoHsz',
+        appKey: '2A68unm1m6JohJrJ3aMWshhc',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

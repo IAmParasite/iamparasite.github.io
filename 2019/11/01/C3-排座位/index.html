@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="动态规划,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题面将n个女生和m个男生排成一列，要求是连续的女生不能超过x，连续的男生不能超过y请问：一共有多少种排座位的方式（结果对1000007取模）。 注：所有的女生看作相同，所有男生看做相同。 注意内存限制。 输入多组数据输入，数据组数小于20 每组数据包括四个正整数n、m、x、y（1≤n,m≤2000,1≤x,y≤2000），含义见描述 输出对于每组数据，输出一行，为排座位的方法数（结果对100000">
+<meta name="keywords" content="动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C3-排座位">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/C3-排座位/index.html">
+<meta property="og:site_name" content="IAmParasite的个人博客">
+<meta property="og:description" content="题面将n个女生和m个男生排成一列，要求是连续的女生不能超过x，连续的男生不能超过y请问：一共有多少种排座位的方式（结果对1000007取模）。 注：所有的女生看作相同，所有男生看做相同。 注意内存限制。 输入多组数据输入，数据组数小于20 每组数据包括四个正整数n、m、x、y（1≤n,m≤2000,1≤x,y≤2000），含义见描述 输出对于每组数据，输出一行，为排座位的方法数（结果对100000">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/C3-排座位/1.png">
+<meta property="og:updated_time" content="2019-11-01T05:42:36.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C3-排座位">
+<meta name="twitter:description" content="题面将n个女生和m个男生排成一列，要求是连续的女生不能超过x，连续的男生不能超过y请问：一共有多少种排座位的方式（结果对1000007取模）。 注：所有的女生看作相同，所有男生看做相同。 注意内存限制。 输入多组数据输入，数据组数小于20 每组数据包括四个正整数n、m、x、y（1≤n,m≤2000,1≤x,y≤2000），含义见描述 输出对于每组数据，输出一行，为排座位的方法数（结果对100000">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/01/C3-排座位/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/01/C3-排座位/">
+
+
+
+
+
+  <title>C3-排座位 | IAmParasite的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IAmParasite的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/C3-排座位/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="IAmParasite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAmParasite的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C3-排座位</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-01T13:14:00+08:00">
+                2019-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第三次上机题解/" itemprop="url" rel="index">
+                    <span itemprop="name">第三次上机题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/01/C3-排座位/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/01/C3-排座位/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>将n个女生和m个男生排成一列，要求是连续的女生不能超过x，连续的男生不能超过y<br>请问：一共有多少种排座位的方式（结果对1000007取模）。</p>
+<p>注：所有的女生看作相同，所有男生看做相同。</p>
+<p>注意内存限制。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>多组数据输入，数据组数小于20</p>
+<p>每组数据包括四个正整数n、m、x、y（1≤n,m≤2000,1≤x,y≤2000），含义见描述</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>对于每组数据，输出一行，为排座位的方法数（结果对1000007取模）</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h4><p>1表示女生，0表示男生</p>
+<p>第一组数据，方法只有一种，即：010</p>
+<p>第二组数据，方法有五种，即：01011，01101，10101,10110，11010</p>
+<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>用dp[i][j][0]和dp[i][j][1]分别表示排列i个女生j个男生时末尾为男生的情况。</p>
+<p>多维动归显然不行，我们注意到，连续不能超过x个女生的情况，只需要在男生后面依次“填充”min(i,x)个女生即可，根本不需要数组记录末尾连续的人数，同理男生也是一样，在女生后面“填充”min(j,y)个男生即可。</p>
+<p>得到一份代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MOD 1000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2002</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, x, y;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;x,&amp;y) != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">		dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>] = dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; j++)	</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= min(i,x); k++)</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j][<span class="number">0</span>] = (dp[i-k][j][<span class="number">1</span>] + dp[i][j][<span class="number">0</span>]) % MOD; </span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= min(j,y); k++)</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j][<span class="number">1</span>] = (dp[i][j-k][<span class="number">0</span>] + dp[i][j][<span class="number">1</span>]) % MOD; </span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,(dp[n][m][<span class="number">1</span>] + dp[n][m][<span class="number">0</span>]) % MOD);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，dp[0][0][1] = dp[0][0][0] = 1，这个初始化好像有悖逻辑，其实不然，我们同样需要更新的是i/j中带一个0情况，为防止错误，我们对带0的情况，也进行遍历，既然规则都是一样的，我们便可以一起遍历。</p>
+<p>然后你<br><img src="/2019/11/01/C3-排座位/1.png" alt="你想输入的替代文字"><br>想想怎么样可以再优化一下呢？我们不妨用笔计算一下：</p>
+<p>假设min(i,x) = 3， min(j,y) = 4</p>
+<p>计算i = 5, j = 6 情况的时候你可以注意到<br>dp[5][6][0] = dp[4][6][1] + dp[3][6][1] + dp[2][6][1] </p>
+<p>dp[5][6][1] = dp[5][5][0] + dp[5][4][0] + dp[5][3][0] + dp[5][2][0]</p>
+<p>同样的进行下一次遍历(j++)的时候，计算i = 5, i = 7 的时候</p>
+<p>dp[5][7][0] = dp[4][7][1] + dp[3][7][1] + dp[2][7][1] </p>
+<p>dp[5][7][1] = dp[5][6][0] + dp[5][5][0] + dp[5][4][0] + dp[5][3][0]</p>
+<p>我们可以发现规律：当i 相同的时候，以男生结尾的情况有重叠的部分，且相加的个数好像是确定的，个数就是min(j,y)个。同样当j相同的时候，以女生结尾的部分也是重复的，只要维护两个数组sum_1[i]，sum_2[j]来表示需要相加的“前缀和”，得出答案再更新，就可以再O(n^2)完成。TLE的点肯定是，x，y比较大的时候，这时的算法效率为O(n^3)，很容易被卡超时。</p>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MOD 1000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2002</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, x, y;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> sum_1[maxn];</span><br><span class="line"><span class="keyword">int</span> sum_2[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;x,&amp;y) != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="built_in">memset</span>(sum_1,<span class="number">0</span>,<span class="keyword">sizeof</span>(sum_1));</span><br><span class="line">		<span class="built_in">memset</span>(sum_2,<span class="number">0</span>,<span class="keyword">sizeof</span>(sum_2));</span><br><span class="line">		dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>] = dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; j++)	</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i][j][<span class="number">0</span>] += sum_2[j];</span><br><span class="line">				dp[i][j][<span class="number">1</span>] += sum_1[i];</span><br><span class="line">				<span class="keyword">if</span>(i &lt; x) sum_2[j] += dp[i][j][<span class="number">1</span>];</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					sum_2[j] += dp[i][j][<span class="number">1</span>];</span><br><span class="line">					sum_2[j] -= dp[i-x][j][<span class="number">1</span>]; </span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(j &lt; y)  sum_1[i] += dp[i][j][<span class="number">0</span>];</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					sum_1[i] += dp[i][j][<span class="number">0</span>];</span><br><span class="line">					sum_1[i] -= dp[i][j-y][<span class="number">0</span>];</span><br><span class="line">				&#125; </span><br><span class="line">				dp[i][j][<span class="number">1</span>] %= MOD;</span><br><span class="line">				dp[i][j][<span class="number">0</span>] %= MOD;</span><br><span class="line">				sum_1[i] = (sum_1[i] + MOD) % MOD;</span><br><span class="line">				sum_2[j] = (sum_2[j] + MOD) % MOD;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,(dp[n][m][<span class="number">1</span>] + dp[n][m][<span class="number">0</span>]) % MOD);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/01/3-Zexal的浩瀚星辰/" rel="next" title="C3-Zexal的浩瀚星辰">
+                <i class="fa fa-chevron-left"></i> C3-Zexal的浩瀚星辰
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/01/C3-等差数列/" rel="prev" title="C3-等差数列">
+                C3-等差数列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">IAmParasite</p>
+              <p class="site-description motion-element" itemprop="description">烟一支一支的点 酒一杯一杯的干</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index-1.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入"><span class="nav-number">2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">4.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">5.</span> <span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hint"><span class="nav-number">6.</span> <span class="nav-text">Hint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析题目"><span class="nav-number">7.</span> <span class="nav-text">分析题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码"><span class="nav-number">8.</span> <span class="nav-text">AC代码</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><span class="nav-number"></span> <span class="nav-text">本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">IAmParasite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'cQBs1ruJ3BXCDTIOU8VOCNGg-gzGzoHsz',
+        appKey: '2A68unm1m6JohJrJ3aMWshhc',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
