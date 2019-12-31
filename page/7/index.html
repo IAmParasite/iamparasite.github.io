@@ -253,6 +253,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/10/-食物链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="IAmParasite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAmParasite的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/10/-食物链/" itemprop="url">C4-食物链</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-10T23:17:00+08:00">
+                2019-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第四次上机题解/" itemprop="url" rel="index">
+                    <span itemprop="name">第四次上机题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/10/-食物链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/10/-食物链/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>现在给你n个物种和m条能量流动关系，求其中的食物链条数。</p>
+<p>物种的名称为从1到n的编号。 m条能量流动关系形如a b 表示能量从物种a 流向物种b。注意单独的一种孤立生物不算一条食物链。</p>
+<p>此处的食物链指的是从生产者到当前链上<strong>最高级消费者</strong>的一条链。（入度为0出度为0的一条独立路径</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一行两个整数n和m,接下来 m行每行两个整数a b描述 m条能量流关系。</p>
+<p>（保证输入数据符合生物学特点，且不会有重复的能量流动关系出现）</p>
+<p>(1&lt;=n&lt;=100000 1&lt;=m&lt;=200000)</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>一个整数，即食物网中的食物链条数。</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> <span class="number">16</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">1</span> <span class="number">4</span></span><br><span class="line"><span class="number">1</span> <span class="number">10</span></span><br><span class="line"><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="number">4</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="number">4</span> <span class="number">8</span></span><br><span class="line"><span class="number">6</span> <span class="number">5</span></span><br><span class="line"><span class="number">7</span> <span class="number">6</span></span><br><span class="line"><span class="number">7</span> <span class="number">9</span></span><br><span class="line"><span class="number">8</span> <span class="number">5</span></span><br><span class="line"><span class="number">9</span> <span class="number">8</span></span><br><span class="line"><span class="number">10</span> <span class="number">6</span></span><br><span class="line"><span class="number">10</span> <span class="number">7</span></span><br><span class="line"><span class="number">10</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>用邻接表储存图，用一个数组来记录点的入度。如果入度为0，则为生产者。如果入度出度都是0，则为孤立点，直接continue。注意到搜索的时候会重复搜索很多点，那么我们用一个数组保存该点的搜索数据，就可以实现记忆化搜索。如果是一颗n叉树自然不用记忆化搜索，想想为什么？</p>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXV = <span class="number">100005</span>, INF = <span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">int</span> N, M, ans;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; Adj[MAXV];</span><br><span class="line"><span class="keyword">bool</span> vest[MAXV]= &#123;<span class="literal">false</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> sum[MAXV];</span><br><span class="line"><span class="keyword">int</span> s[MAXV];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(Adj[idx].size() == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> s[idx] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Adj[idx].size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">int</span> t = Adj[idx][i];</span><br><span class="line">    	res += s[t] ? s[t] : DFS(t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s[idx] = res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;N, &amp;M);</span><br><span class="line">    <span class="keyword">int</span> u,v;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">        Adj[u].push_back(v);</span><br><span class="line">        sum[v]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(sum[i] == <span class="number">0</span> &amp;&amp; Adj[i].size() != <span class="number">0</span>)</span><br><span class="line">            ans += DFS(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/10/-排列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -948,183 +1114,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/3-Zexal的浩瀚星辰/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="IAmParasite">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IAmParasite的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/01/3-Zexal的浩瀚星辰/" itemprop="url">C3-Zexal的浩瀚星辰</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-01T12:41:00+08:00">
-                2019-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/第三次上机题解/" itemprop="url" rel="index">
-                    <span itemprop="name">第三次上机题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/01/3-Zexal的浩瀚星辰/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/01/3-Zexal的浩瀚星辰/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>Zexal 想要发射火箭，但是由于能源供应不足了，所以一些火箭需要延迟发射。 每个火箭每延迟一小时发射都会相应的损失。Zexal了解到，一共有n个火箭，其中第i个火箭原计划在第i小时发射，即1<del>n时间段发射，现预计k小时后电力可以恢复正常，即所有火箭将在k+1</del>k+n时间段内发射，</p>
-<p>新的火箭发射计划<strong>不要求</strong>按照最初的发射计划顺序，唯一的要求是每个火箭都不能早于原定时间发射。请你帮忙计算一下最小的损失吧。</p>
-<p>注意：时间均以小时为最小单位。由于条件有限，一次只能发射一枚火箭。</p>
-<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>输入包含多组数据。</p>
-<p>每组数据第一行为正整数n和k（1≤n≤500000,1≤k≤500000），为火箭总数和延迟时间。</p>
-<p>接下来是n个正整数 pi，代表第i个火箭每延迟一小时的损失费（1≤pi≤104）。</p>
-<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>对于每组数据，输出一行，为最小的损失费用。</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="number">10</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">20</span></span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>我们可以将这个题分成两种情况： n &gt;= k 和 n &lt; k</p>
-<p>当 n &gt;= k 时，即所有火箭必定延误，我们的直觉告诉我们，将延误代价最高的火箭先发射，是不是能让损失最小呢？我们又发现，我们需要计算他们发射时间之间的差值，也就是说，延误的代价还与发射时间有关，那么我们这样做是否是正确的呢？如果不正确，我们应该采用动态规划的方法来分析这个题，<br>如果正确直接即可。经过数学证明可以知道，越早发射代价最高的火箭，代价越小。</p>
-<p><strong>证明</strong> ：<br>设 Wi, Wj 为第i个火箭和第j个火箭延误一小时的代价，Ti，Tj，为原定发射时间，K1，K2，为火箭延误后的发射时间，我们这里不妨设K1 &lt; K2，且可以知道的是，调换这两个火箭的发射顺序，对其他火箭并没有任何影响。</p>
-<p>我们用 P1 表示先发射火箭i再发射火箭j造成的损失，P2表示先发射火箭j再发射火箭i造成的损失</p>
-<p>P1 = (K1 - Ti) * Wi + (K2 - Tj) * Wj</p>
-<p>P2 = (K1 - Tj) * Wj + (K2 - Ti) * Wi</p>
-<p>要是 P1 &lt; P2 我们有 <strong>(K1 - Ti) * Wi + (K2 - Tj) * Wj &lt; (K1 - Tj) * Wj + (K2 - Ti) * Wi</strong></p>
-<p>化简可以得到 K1(Wi - Wj) &lt; K2(Wi - Wj)</p>
-<p>已知的是K1 &lt; K2， 那么我只需要Wi &gt; Wj 即可满足越早发射损失越小的目标。这与原定发射时间没有任何关系，我们只需要把火箭每小时损失费用从大到小排列一遍，再用简单的贪心即可计算出来。</p>
-<p>接下来就是n &lt; k 的情况了：</p>
-<p>我们可以发现，如果我们还是按照上一种情况来计算这种情况的话，我们无法确定发射时间比原定时间晚。这怎么办呢？只能动态计算所有火箭的损失。边读取边计算即可保证火箭延误后的发射时间比原定时间晚。维护一个优先队列，在第k+i时刻，如果此时在原定计划有未发射的火箭，那么先读入他，入队，去掉队首元素，更新答案，知道第k+n时刻，所有火箭发射完毕。</p>
-<p>实现的过程中需要对结构题进行排序，在结构体中重载运算符号即可~</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 500005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> e, w;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> node &amp; a) <span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> w &lt; a.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;p[maxn];</span><br><span class="line">priority_queue&lt;node&gt; q; </span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n, k, ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;k) != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= min(k,n); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;p[i].w);</span><br><span class="line">			p[i].e = i;</span><br><span class="line">			q.push(p[i]);</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = k + <span class="number">1</span>; i &lt;= k + n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(i &lt;= n)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;p[i].w);</span><br><span class="line">				p[i].e = i;</span><br><span class="line">				q.push(p[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">int</span> w = q.top().w;</span><br><span class="line">			ans += (i - q.top().e) * w;</span><br><span class="line">			q.pop();</span><br><span class="line">		&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1175,7 +1164,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1186,7 +1175,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index-1.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
