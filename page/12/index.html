@@ -253,6 +253,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/C2-Zexal的竞赛/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="IAmParasite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAmParasite的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/16/C2-Zexal的竞赛/" itemprop="url"> C2-Zexal的竞赛</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-16T21:29:00+08:00">
+                2019-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第二次上机题解/" itemprop="url" rel="index">
+                    <span itemprop="name">第二次上机题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/16/C2-Zexal的竞赛/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/16/C2-Zexal的竞赛/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>在一场竞赛中有n道题目，每道题都会对应一个分值，你可以选择任意一道题作答，比如你选择了x分的题目，那么在作答完毕（假设一定可以得分）后，你将获得x分，但是这场比赛中分值等于x−1和x+1的其他题目就会消失，那么这场比赛中你最多可以得到多少分？</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一个数为题目总数n（0&lt;n&lt;1e5)<br>接下来为n个整数a1，a2，a3…..(0&lt;ai&lt;1e5)</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出你可以得到的最高分</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">3</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>一个拐了弯的递推题目吧，可以理解为背包</p>
+<p>首先如果你选了一个分数为x的题目，显然你需要将分数为x的所有题目全部做完，才能获得最高的分数</p>
+<p>然后思考dp[n]表示什么：</p>
+<p>1.n表示做完前n个题目能得到的最大值：显然不行，无法判断哪些是做过的，哪些是没有做过的</p>
+<p>2.n表示做完所有n个不重复的物品（贪心优化），可以发现已经很接近答案了，可以再途中顺便排序，用一个结构体储存他的题目分数和所有分数加起来的分数（w[i]）。这么做似乎可行，列出递推方程式：（用before记录dp[n-1]采取的题目分数） 然而这样又出现了新的问题，尽管有before来实现所谓的筛除，但是无法清除所有记录，因为我们无法知道dp[n-1]是否采取了第n-1个题目<br>3.n表示做完最大值为n的获得的分数的最大值，递推方程式：<br>dp[n] = dp[i-1], dp[i-2]+num[i]*i.</p>
+<p>具体怎么想呢，实际上是找变量之间的关系。题目中对分数做了限制，那么我们就在分数上下手，直接用f[n]表示最大分数为n是所获得的最大分数</p>
+<p>~是不是豁然开朗了呢</p>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[maxn], tmp, a[maxn], maxx;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;tmp);</span><br><span class="line">		<span class="keyword">if</span>(tmp &gt; maxx) 	maxx = tmp;</span><br><span class="line">		a[tmp]++;     </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= maxx; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f[i] = max(f[i<span class="number">-1</span>],f[i<span class="number">-2</span>]+i*a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,f[maxx]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/C2-Zexal的排座位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -897,174 +1065,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/12/C1-Zexal的过河/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="IAmParasite">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IAmParasite的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/12/C1-Zexal的过河/" itemprop="url">C1-Zexal的过河</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-12T21:26:00+08:00">
-                2019-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/第一次上机题解/" itemprop="url" rel="index">
-                    <span itemprop="name">第一次上机题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/12/C1-Zexal的过河/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/12/C1-Zexal的过河/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>Zexal打算借助河中间的石砖过到河对岸去。Zexal从第一块石砖出发，接下来他可以走到第二块石砖或第三块石砖，有时候走的很不爽，甚至可以直接跨过两个石砖，到达第四块石砖，但是不能连续两次这种操作，因为这样消耗体能比较大。现在假设河中含n块石砖，且这些石砖呈直线分布，请你计算出Zexal从第一块石砖出发有多少种安全的过河方法。</p>
-<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>输入将由多组测试数据组成，以EOF结尾。</p>
-<p>每组数据只有一行，为河中的总石砖数n（0＜n≤50）。</p>
-<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>对于每组数据，输出一行，为过河的方法数。</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>1：一步走完；<br>2：先走到2再走完，或者直接走完；<br>3：111或12或21或3。</p>
-<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>我们想要走到第n步，有3中方法，从f[n-1], f[n-2], f[n-3] 走过来。</p>
-<p>但是我们如果只用一个数组无法判断是否连续走了两步， 所以我们用两个数组来保存f1[n] 表示走到第n步且最后一步不是走3的方法数，f[2] 表示走到第n不且最后一次是走3步的方法数。我们可以得到递推公式：</p>
-<p>f[n] = f1[n] + f2[n];</p>
-<p>f1[n] = f1[n-1] + f1[n-2] + f2[n-1] + f2[n-1];</p>
-<p>f2[n] = f1[n-3]; </p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 55</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[maxn], f1[maxn], f2[maxn], tmp;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	f1[<span class="number">1</span>] = <span class="number">1</span>; </span><br><span class="line">	f2[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	f1[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">	f2[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">	f1[<span class="number">3</span>] = <span class="number">3</span>;</span><br><span class="line">	f2[<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">4</span>; i &lt;= <span class="number">50</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f1[i] = f1[i<span class="number">-1</span>] + f1[i<span class="number">-2</span>] + f2[i<span class="number">-1</span>] + f2[i<span class="number">-2</span>]; </span><br><span class="line">		f2[i] = f1[i<span class="number">-3</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;tmp) == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,f1[tmp]+f2[tmp]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a> </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1115,7 +1115,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1174,7 +1174,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
