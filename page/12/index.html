@@ -253,358 +253,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/C2-与非门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="IAmParasite">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IAmParasite的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/17/C2-与非门/" itemprop="url">C2-与非门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-17T21:32:00+08:00">
-                2019-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/第二次上机题解/" itemprop="url" rel="index">
-                    <span itemprop="name">第二次上机题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/17/C2-与非门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/17/C2-与非门/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>数字电路中有一种基本逻辑电路叫做与非门，它有两个输入和一个输出。如下图：<br><img src="/2019/10/17/C2-与非门/C2_B_1.jpg" alt="你想输入的替代文字"><br>现在将n个与非门拼接到一起，形成了一个形如二叉树的电路，如下图：<br><img src="/2019/10/17/C2-与非门/C2_B_3.jpg" alt="你想输入的替代文字"><br>两个与非门相连表示一个与非门的输出作为另一个与非门的输入。不与与非门相连的部分表示外部输入，可能是0或者1。也就是说所有子节点数不为2的节点都会连一个外部输入，自底向上处理，最后从根节点输出，保证根节点编号为1.</p>
-<p>由于外界的干扰，有一些与非门损坏，只能输出1或者只能输出0。</p>
-<p>现在给出一个电路，请问有多少输入对应的输出会出错。</p>
-<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一行一个整数n（1≤n≤1e5）</p>
-<p>接下来n行，每行三个整数a,b,c(0≤a,b≤n,−1≤c≤1)。对于第i行，如果a,b不为0，则a表示第i个与非门与第a个与非门相连，b表示第i个与非门与第b个与非门相连；如果a或者b为0，表示第i个与非门对应的输入接外部输入。c如果等于-1，表示第i个与非门正常工作，1表示第i个与非门只输出1，0表示第i个与非门只输出0</p>
-<p>从1开始编号，保证根节点为1。</p>
-<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出一行，一个整数，答案可能很大，请对1e9+7取模</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">-1</span></span><br><span class="line"><span class="number">4</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h4><p>这个样例对应的电路如下:<br><img src="/2019/10/17/C2-与非门/C2_B_4.jpg" alt="你想输入的替代文字"><br>其中1号损坏只能输出1,3号损坏只能输出0</p>
-<p>一共有5个外部输入，每个都可能是0,1,所以输入一共有25种情况</p>
-<p>对于输入<strong>0 0 0 0 0</strong>（上图中，由上到下），理论输出为0，实际输出为1，出错</p>
-<p>对于输入<strong>1 1 1 1 1</strong>（上图中，由上到下），理论输出为1，实际输出为1，正确</p>
-<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>这个题很明显树形dp+dfs做</p>
-<p>我没学过树形dp怎么办…其实树形dp就是和普通的dp一样，只不过采用了递归解法来求解问题</p>
-<p>首先可以想到的是，这是一颗二叉树。当遍历到一个节点只有一个孩子的时候，这个孩子可能是左子树，也有可能是右子树。可以想到的是，调换左右子树的位置对结果没有影响。那么我们将这种情况归结为右子树为空，只遍历他的左子树即可</p>
-<p>首先将1作为根节点，遍历dfs他的左右孩子。当dfs到一个节点没有左右孩子的时候，即叶子节点，我们可以返回一定的值（肯定要获取一定的信息啦）。<br>当dfs到一个结点的度为1时，遍历他的左子树即可。</p>
-<p>我们用cor[num][0] cor[num][1] 分别表示正确输出0和正确输出1（理解为输出0或1并且正确）</p>
-<p>我们用cor[num][0] cor[num][1] 分别表示错误输出0和错误输出1（理解为输出0或1并且错误）</p>
-<p>left 表示左孩子的编号， right 表示右孩子的编号。</p>
-<p>可以首先想到的是答案为 err[num][0] + err[num][1]， 再对其取模即可</p>
-<p>当一个节点左右子树都存在的时候，我们分析一个比较简单的情况:</p>
-<p>输出0但是错误，即理论上生成1，实际生成0</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">err[num][<span class="number">0</span>] = err[left][<span class="number">1</span>] * err[right][<span class="number">1</span>] <span class="comment">// 理论上输入的为 0,0，理论输出为1，实际输出为0，则这是一种err错误情况</span></span><br><span class="line">	     + err[left][<span class="number">1</span>] * cor[right][<span class="number">1</span>] <span class="comment">// 理论上输入的为 0,1，理论输出为1，实际输出为0，则这是一种err错误情况</span></span><br><span class="line">	     + cor[left][<span class="number">1</span>] * err[right][<span class="number">1</span>] <span class="comment">// 理论上输入的为 1,0，理论输出为1，实际输出为0，则这是一种err错误情况</span></span><br><span class="line"><span class="comment">// 注意区别的是，想要输出0，那么输入只能是1,1，1可以是错误输出也可以使正确输出得来的，如果是错误输出得来的，那么他这一项理论上其实为0，如果是正确输出得来的，那么他这一项理论上其实为1...以此类推，即可得到整个规律</span></span><br></pre></td></tr></table></figure>
-
-<p>当一个节点为叶子节点的时候，我们只需复制上一种情况, cor[num][0] = 1, cor[num][1] = 3，return 即可</p>
-<p>当一个节点的度为1的时候，我们模仿第一种情况的思想，很容易就可以得到递推关系式。</p>
-<p>最后取模，即可完成这道入门树形dp了（在dalao眼里的签到题）</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n, a1, a2, type[maxn];</span><br><span class="line">ll cor[maxn][<span class="number">2</span>], err[maxn][<span class="number">2</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; child[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(child[num].empty())</span><br><span class="line">	&#123;</span><br><span class="line">		cor[num][<span class="number">0</span>] = <span class="number">1</span>, cor[num][<span class="number">1</span>] = <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(child[num].size() == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> l = child[num][<span class="number">0</span>];</span><br><span class="line">		dfs(l);</span><br><span class="line">		cor[num][<span class="number">0</span>] = cor[l][<span class="number">1</span>] % mod; </span><br><span class="line">		cor[num][<span class="number">1</span>] = (cor[l][<span class="number">0</span>] * <span class="number">2</span>  + cor[l][<span class="number">1</span>] + err[l][<span class="number">0</span>] + err[l][<span class="number">1</span>]) % mod;</span><br><span class="line">		err[num][<span class="number">0</span>] = err[l][<span class="number">1</span>] % mod; </span><br><span class="line">		err[num][<span class="number">1</span>] = err[l][<span class="number">0</span>] % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> l = child[num][<span class="number">0</span>], r = child[num][<span class="number">1</span>];</span><br><span class="line">		dfs(l), dfs(r);</span><br><span class="line">		cor[num][<span class="number">0</span>] = (cor[l][<span class="number">1</span>] * cor[r][<span class="number">1</span>]) % mod; </span><br><span class="line">		cor[num][<span class="number">1</span>] = (err[l][<span class="number">0</span>] * cor[r][<span class="number">0</span>] + cor[l][<span class="number">0</span>] * err[r][<span class="number">0</span>] + cor[l][<span class="number">0</span>] * cor[r][<span class="number">0</span>]</span><br><span class="line">					+ cor[l][<span class="number">0</span>] * err[r][<span class="number">1</span>] + cor[l][<span class="number">0</span>] * cor[r][<span class="number">1</span>] + err[l][<span class="number">0</span>] * err[r][<span class="number">1</span>]</span><br><span class="line">					+ err[l][<span class="number">1</span>] * cor[r][<span class="number">0</span>] + cor[l][<span class="number">1</span>] * cor[r][<span class="number">0</span>] + err[l][<span class="number">1</span>] * err[r][<span class="number">0</span>]) % mod;</span><br><span class="line">		err[num][<span class="number">0</span>] = (err[l][<span class="number">1</span>] * err[r][<span class="number">1</span>] + err[l][<span class="number">1</span>] * cor[r][<span class="number">1</span>] + cor[l][<span class="number">1</span>] * err[r][<span class="number">1</span>]) % mod; </span><br><span class="line">		err[num][<span class="number">1</span>] = (err[l][<span class="number">0</span>] * err[r][<span class="number">0</span>] + err[l][<span class="number">0</span>] * cor[r][<span class="number">1</span>] + cor[l][<span class="number">1</span>] * err[r][<span class="number">0</span>]) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(type[num] == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cor[num][<span class="number">1</span>] += err[num][<span class="number">0</span>]; err[num][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		err[num][<span class="number">1</span>] += cor[num][<span class="number">0</span>]; cor[num][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(type[num] == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cor[num][<span class="number">0</span>] += err[num][<span class="number">1</span>]; err[num][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">		err[num][<span class="number">0</span>] += cor[num][<span class="number">1</span>]; cor[num][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;a1,&amp;a2,&amp;type[i]);</span><br><span class="line">		<span class="keyword">if</span>(a1 != <span class="number">0</span>)  child[i].push_back(a1);</span><br><span class="line">		<span class="keyword">if</span>(a2 != <span class="number">0</span>)  child[i].push_back(a2);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="comment">/*for(int i = 1; i &lt;= n; i++)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "第" &lt;&lt; i &lt;&lt; "个与非门 : " &lt;&lt; endl; </span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "  正确输出0 : " &lt;&lt; cor[i][0] &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "  正确输出1 : " &lt;&lt; cor[i][1] &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "  错误输出0 : " &lt;&lt; err[i][0] &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "  错误输出1 : " &lt;&lt; err[i][1] &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, (err[<span class="number">1</span>][<span class="number">0</span>] + err[<span class="number">1</span>][<span class="number">1</span>]) % mod);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/C2-Zexal的竞赛/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="IAmParasite">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IAmParasite的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/16/C2-Zexal的竞赛/" itemprop="url"> C2-Zexal的竞赛</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-16T21:29:00+08:00">
-                2019-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/第二次上机题解/" itemprop="url" rel="index">
-                    <span itemprop="name">第二次上机题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/16/C2-Zexal的竞赛/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/16/C2-Zexal的竞赛/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>在一场竞赛中有n道题目，每道题都会对应一个分值，你可以选择任意一道题作答，比如你选择了x分的题目，那么在作答完毕（假设一定可以得分）后，你将获得x分，但是这场比赛中分值等于x−1和x+1的其他题目就会消失，那么这场比赛中你最多可以得到多少分？</p>
-<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一个数为题目总数n（0&lt;n&lt;1e5)<br>接下来为n个整数a1，a2，a3…..(0&lt;ai&lt;1e5)</p>
-<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出你可以得到的最高分</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">3</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>一个拐了弯的递推题目吧，可以理解为背包</p>
-<p>首先如果你选了一个分数为x的题目，显然你需要将分数为x的所有题目全部做完，才能获得最高的分数</p>
-<p>然后思考dp[n]表示什么：</p>
-<p>1.n表示做完前n个题目能得到的最大值：显然不行，无法判断哪些是做过的，哪些是没有做过的</p>
-<p>2.n表示做完所有n个不重复的物品（贪心优化），可以发现已经很接近答案了，可以再途中顺便排序，用一个结构体储存他的题目分数和所有分数加起来的分数（w[i]）。这么做似乎可行，列出递推方程式：（用before记录dp[n-1]采取的题目分数） 然而这样又出现了新的问题，尽管有before来实现所谓的筛除，但是无法清除所有记录，因为我们无法知道dp[n-1]是否采取了第n-1个题目<br>3.n表示做完最大值为n的获得的分数的最大值，递推方程式：<br>dp[n] = dp[i-1], dp[i-2]+num[i]*i.</p>
-<p>具体怎么想呢，实际上是找变量之间的关系。题目中对分数做了限制，那么我们就在分数上下手，直接用f[n]表示最大分数为n是所获得的最大分数</p>
-<p>~是不是豁然开朗了呢</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[maxn], tmp, a[maxn], maxx;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;tmp);</span><br><span class="line">		<span class="keyword">if</span>(tmp &gt; maxx) 	maxx = tmp;</span><br><span class="line">		a[tmp]++;     </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= maxx; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f[i] = max(f[i<span class="number">-1</span>],f[i<span class="number">-2</span>]+i*a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,f[maxx]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/C2-Zexal的排座位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1097,6 +745,326 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/股票交易问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="IAmParasite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAmParasite的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/16/股票交易问题/" itemprop="url">股票交易问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-16T08:52:00+08:00">
+                2019-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第二次上机练习题/" itemprop="url" rel="index">
+                    <span itemprop="name">第二次上机练习题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/16/股票交易问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/16/股票交易问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="大佬博客："><a href="#大佬博客：" class="headerlink" title="大佬博客："></a>大佬博客：</h4><p><a href="https://segmentfault.com/a/1190000006672807" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006672807</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/12/C1-Zexal的过河/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="IAmParasite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAmParasite的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/12/C1-Zexal的过河/" itemprop="url">C1-Zexal的过河</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-12T21:26:00+08:00">
+                2019-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第一次上机题解/" itemprop="url" rel="index">
+                    <span itemprop="name">第一次上机题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/12/C1-Zexal的过河/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/12/C1-Zexal的过河/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h4><p>Zexal打算借助河中间的石砖过到河对岸去。Zexal从第一块石砖出发，接下来他可以走到第二块石砖或第三块石砖，有时候走的很不爽，甚至可以直接跨过两个石砖，到达第四块石砖，但是不能连续两次这种操作，因为这样消耗体能比较大。现在假设河中含n块石砖，且这些石砖呈直线分布，请你计算出Zexal从第一块石砖出发有多少种安全的过河方法。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>输入将由多组测试数据组成，以EOF结尾。</p>
+<p>每组数据只有一行，为河中的总石砖数n（0＜n≤50）。</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>对于每组数据，输出一行，为过河的方法数。</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>1：一步走完；<br>2：先走到2再走完，或者直接走完；<br>3：111或12或21或3。</p>
+<h4 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h4><p>我们想要走到第n步，有3中方法，从f[n-1], f[n-2], f[n-3] 走过来。</p>
+<p>但是我们如果只用一个数组无法判断是否连续走了两步， 所以我们用两个数组来保存f1[n] 表示走到第n步且最后一步不是走3的方法数，f[2] 表示走到第n不且最后一次是走3步的方法数。我们可以得到递推公式：</p>
+<p>f[n] = f1[n] + f2[n];</p>
+<p>f1[n] = f1[n-1] + f1[n-2] + f2[n-1] + f2[n-1];</p>
+<p>f2[n] = f1[n-3]; </p>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 55</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[maxn], f1[maxn], f2[maxn], tmp;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	f1[<span class="number">1</span>] = <span class="number">1</span>; </span><br><span class="line">	f2[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	f1[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">	f2[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">	f1[<span class="number">3</span>] = <span class="number">3</span>;</span><br><span class="line">	f2[<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">4</span>; i &lt;= <span class="number">50</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f1[i] = f1[i<span class="number">-1</span>] + f1[i<span class="number">-2</span>] + f2[i<span class="number">-1</span>] + f2[i<span class="number">-2</span>]; </span><br><span class="line">		f2[i] = f1[i<span class="number">-3</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;tmp) == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,f1[tmp]+f2[tmp]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"><a href="#本人水平有限，如有任何错误，恳请大家指正，不要误导他人…" class="headerlink" title="本人水平有限，如有任何错误，恳请大家指正，不要误导他人…"></a>本人水平有限，如有任何错误，恳请大家指正，不要误导他人…</h3><p>错误反馈： <a href="mailto:1004183196@qq.com" target="_blank" rel="noopener">1004183196@qq.com</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1147,7 +1115,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
